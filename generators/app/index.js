@@ -49,4 +49,13 @@ module.exports = class extends Generator {
 
     this.appConfig.installDependencies = true;
   }
+
+  install() {
+    process.chdir(this.appConfig.appname);
+
+    this.installDependencies({
+      npm: true,
+      bower: false
+    });
+  }
 };
