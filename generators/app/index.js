@@ -1,4 +1,5 @@
 const Generator = require('yeoman-generator');
+const { exec } = require('child_process');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -48,6 +49,15 @@ module.exports = class extends Generator {
     this.fs.copy(this.sourceRoot() + '/src/index.ts', context.appname + '/src/index.ts', context);
 
     this.appConfig.installDependencies = true;
+    this._openVsCode();
+  }
+
+  _openVsCode() {
+    exec('code ' + this.destinationPath(this.appConfig.appname).replace('\\', '/'), (err, stdout, stderr) => {
+      if (err || stderr) {
+        this.log('Could not open directory with vscode. Do you have it installed?');
+      }
+    });
   }
 
   install() {
