@@ -1,0 +1,16 @@
+{
+  "version": "0.1.0",
+  "command": "npm",
+  "isShellCommand": true,
+  "args": [
+    "run-script",
+    "tsc"
+  ],
+  "showOutput": "always",
+  "tasks": [
+    {
+      "taskName": "tsc",
+      "suppressTaskName": true
+    }
+  ]
+}
