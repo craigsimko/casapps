@@ -1,71 +1,71 @@
+'use strict';
 const Generator = require('yeoman-generator');
-const { exec } = require('child_process');
+const _s = require('underscore.string');
+const utils = require('../utils');
 
 module.exports = class extends Generator {
-  constructor(args, opts) {
-    super(args, opts);
-    this.appConfig = {};
+  constructor(a, b) {
+    super(a, b);
+
+    this.option('open', {
+      type: Boolean,
+      desc: 'Open the repository in VSCode',
+      alias: 'o',
+      required: false,
+      store: true,
+      default: true
+    });
   }
 
-  prompting() {
-    return this.prompt([{
-      type: 'input',
-      name: 'name',
-      message: 'Your project name',
-      default: this.appname // Default to current folder name
+  async init() {
+    const props = await this.prompt([{
+      name: 'moduleName',
+      message: 'What do you want to name your module?',
+      default: _s.slugify(this.appname),
+      filter: x => utils.slugifyPackageName(x)
     }, {
-      type: 'input',
-      name: 'description',
-      message: 'Describe your project',
-      default: ''
-    }]).then((answers) => {
-      this.appConfig.appname = answers.name;
-      this.appConfig.description = answers.description;
-    });
+      name: 'moduleDescription',
+      message: 'What is your module description?',
+      default: `Web Application that accepts webhooks from ChannelApe.`
+    }]);
+
+    const or = (option, prop) => this.options[option] === undefined ? props[prop || option] : this.options[option];
+
+    const tpl = {
+      moduleName: props.moduleName,
+      moduleDescription: props.moduleDescription,
+      name: this.user.git.name(),
+      email: this.user.git.email()
+    };
+
+    const mv = (from, to) => {
+      this.fs.move(this.destinationPath(from), this.destinationPath(to));
+    };
+
+    this.fs.copyTpl([
+      `${this.templatePath()}/**`
+    ], this.destinationPath(), tpl);
+
+    mv('gitignore', '.gitignore');
+    mv('_env.example', '.env.example');
+    mv('_env', '.env');
+    mv('_package.json', 'package.json');
+    mv('_vscode/**', '.vscode/');
+
+    if (or('open')) {
+      this._openVsCode();
+    }
   }
 
-  writing() {
-    var context = this.appConfig;
-
-    this.fs.copy(this.sourceRoot() + '/.vscode', context.appname + '/.vscode');
-    this.fs.copy(this.sourceRoot() + '/test', context.appname + '/test');
-    this.fs.copy(this.sourceRoot() + '/.gitignore', context.appname + '/.gitignore');
-    this.fs.copy(this.sourceRoot() + '/stryker.conf.js', context.appname + '/stryker.conf.js');
-    this.fs.copy(this.sourceRoot() + '/tsconfig.json', context.appname + '/tsconfig.json');
-    this.fs.copy(this.sourceRoot() + '/tslint.json', context.appname + '/tslint.json');
-
-    this.fs.copyTpl(
-      this.templatePath('README.md'),
-      this.destinationPath(context.appname + '/README.md'),
-      context
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath(context.appname + '/package.json'),
-      context
-    );
-
-    this.fs.copy(this.sourceRoot() + '/src/index.ts', context.appname + '/src/index.ts', context);
-
-    this.appConfig.installDependencies = true;
-    this._openVsCode();
-  }
-
-  _openVsCode() {
-    exec('code ' + this.destinationPath(this.appConfig.appname).replace('\\', '/'), (err, stdout, stderr) => {
-      if (err || stderr) {
-        this.log('Could not open directory with vscode. Do you have it installed?');
-      }
-    });
+  git() {
+    this.spawnCommandSync('git', ['init']);
   }
 
   install() {
-    process.chdir(this.appConfig.appname);
+    this.installDependencies({bower: false});
+  }
 
-    this.installDependencies({
-      npm: true,
-      bower: false
-    });
+  _openVsCode() {
+    this.spawnCommandSync('code', [this.destinationPath()]);
   }
 };
