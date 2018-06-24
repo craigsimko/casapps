@@ -1,3 +1,1 @@
-export function main() {
-  console.log('index.ts');
-}
+export * from './Foo';
