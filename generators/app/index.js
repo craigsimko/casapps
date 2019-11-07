@@ -26,7 +26,7 @@ module.exports = class extends Generator {
     }, {
       name: 'moduleDescription',
       message: 'What is your module description?',
-      default: `Web Application that accepts webhooks from ChannelApe.`
+      default: `An NPM Module`
     }]);
 
     const or = (option, prop) => this.options[option] === undefined ? props[prop || option] : this.options[option];
