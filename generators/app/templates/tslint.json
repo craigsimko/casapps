@@ -8,8 +8,6 @@
       120
     ],
     "no-trailing-whitespace": true,
-    "no-debugger": true,
-    "no-console": true,
-    "no-unused-variable": true
+    "no-debugger": true
   }
 }
