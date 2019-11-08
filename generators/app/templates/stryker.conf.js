@@ -9,8 +9,8 @@ module.exports = function (config) {
     tsconfigFile: "tsconfig.json",
     mutate: ["src/**/*.ts"],
     mochaOptions: {
-      files: ['test/**/*.ts'],
-      spec: ['test/**/*.ts'],
+      files: ['tests/unit-tests/**/*.ts'],
+      spec: ['tests/unit-tests/**/*.ts'],
       require: ['ts-node/register']
     },
   });
