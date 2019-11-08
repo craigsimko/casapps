@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Foo from '../src/Foo';
+import Foo from '../../src/Foo';
 
 describe('Foo', () => {
   describe('sum 2 and 3', () => {
