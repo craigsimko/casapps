@@ -13,6 +13,7 @@
   },
   "scripts": {
     "prepublishOnly": "npm run compile",
+    "prestart": "npm run compile",
     "start": "node dist/index.js",
     "compile": "tsc && tsc -p tests/unit-tests/tsconfig.json",
     "lint": "tslint -p tsconfig.json && tslint -p tests/unit-tests/tsconfig.json",
