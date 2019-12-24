@@ -1,6 +1,6 @@
-# <%= moduleName %>
-<%= moduleName %>
-<%= moduleDescription %>
+# <%= lambdaName %>
+<%= lambdaName %>
+<%= lambdaDescription %>
 
 ## Setup
 Get the app running locally by configuring your, get node and NPM 
