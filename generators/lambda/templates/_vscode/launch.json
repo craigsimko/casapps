@@ -29,6 +29,22 @@
       "envFile": "${workspaceFolder}/.env",
       "cwd": "${workspaceRoot}",
       "protocol": "inspector"
+    },
+    {
+      "name": "FEATURE FILES",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/cucumber/bin/cucumber-js",
+      "args": [
+        "${workspaceRoot}/tests/features/**/*.feature",
+        "--require-module",
+        "ts-node/register",
+        "--require",
+        "${workspaceRoot}/tests/features/**/*.ts"
+      ],
+      "envFile": "${workspaceFolder}/.env",
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector"
     }
   ]
 }

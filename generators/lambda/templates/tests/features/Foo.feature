@@ -2,6 +2,8 @@ Feature: Foo
 
   Rule: Numbers should be added together
 
+  Rule: Numbers hsould be subtracted from each other
+
   Scenario: Simple Sum
     Given a parameter of 2 and a parameter of 3
     When I add the parameters together
