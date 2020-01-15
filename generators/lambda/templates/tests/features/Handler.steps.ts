@@ -1,7 +1,7 @@
 import { Given, When, Then } from 'cucumber';
 import { expect } from 'chai';
 import * as index from '../../src/index';
-import { APIGatewayEvent } from 'aws-lambda';
+import { APIGatewayEvent } from '../../src/models/AWS';
 
 let apiGatewayEvent: APIGatewayEvent;
 let response: any;
