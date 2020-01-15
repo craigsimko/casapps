@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as index from '../../src/index';
-import { APIGatewayEvent } from 'aws-lambda';
+import { APIGatewayEvent } from '../../src/models/AWS';
 
 describe('Handler', () => {
   describe('Given v1 of 2, v2 of 3, and operator of "sum"', () => {
