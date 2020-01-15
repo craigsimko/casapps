@@ -32,7 +32,6 @@
   ],
   "keywords": [],
   "dependencies": {
-    "aws-lambda": "^1.0.5",
     "channelape-logger": "^0.3.0"
   },
   "devDependencies": {

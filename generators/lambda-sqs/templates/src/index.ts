@@ -1,4 +1,4 @@
-import { SQSEvent } from 'aws-lambda';
+import { SQSEvent } from './models/AWS';
 import Foo from './Foo';
 
 export const handler = async (event: SQSEvent): Promise<any> => {
