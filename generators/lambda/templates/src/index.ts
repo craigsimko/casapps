@@ -1,4 +1,4 @@
-import { APIGatewayEvent } from 'aws-lambda';
+import { APIGatewayEvent } from './models/AWS';
 import Foo from './Foo';
 
 export const handler = async (event: APIGatewayEvent): Promise<any> => {
