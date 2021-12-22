@@ -51,6 +51,7 @@ module.exports = class extends Generator {
     mv('_env', '.env');
     mv('_package.json', 'package.json');
     mv('_vscode/**', '.vscode/');
+    mv('_eslintrc.js', '.eslintrc.js');
 
     if (or('open')) {
       this._openVsCode();

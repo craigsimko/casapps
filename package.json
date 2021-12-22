@@ -1,6 +1,6 @@
 {
   "name": "generator-casapps",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "",
   "files": [
     "generators"
