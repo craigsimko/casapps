@@ -1,4 +1,6 @@
-import { Given, When, Then, Before } from 'cucumber';
+import {
+  Given, When, Then, Before,
+} from '@cucumber/cucumber';
 import { expect } from 'chai';
 import Foo from '../../src/Foo';
 
@@ -21,7 +23,7 @@ Given('a parameter of {int} and a parameter of {int}', (x: number, y: number) =>
 });
 
 When('I add the parameters together', () => {
-  sumGlobal = foo.sum(xGlobal, yGlobal);
+  sumGlobal = Foo.sum(xGlobal, yGlobal);
 });
 
 When('I subtract the parameters from each other', () => {
