@@ -1,6 +1,6 @@
 {
   "name": "generator-casapps",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "description": "",
   "files": [
     "generators"
@@ -10,7 +10,7 @@
   ],
   "dependencies": {
     "is-scoped": "^1.0.0",
-    "underscore.string": "^3.0.3",
+    "underscore.string": "^3.3.5",
     "yeoman-generator": "^2.0.5"
   }
 }
